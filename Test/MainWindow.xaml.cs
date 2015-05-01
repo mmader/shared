@@ -26,7 +26,6 @@ namespace Test
 		{
 			InitializeComponent();
 
-
 			string foobar = "1234";
 
 			foobar.SafeCall(f => {
@@ -40,6 +39,15 @@ namespace Test
 
 			string[] fooArray = { "1", "2", "3" };
 			fooArray.ForEach(f => Debug.WriteLine(f));
+
+
+			Debug.Print("***********************");
+			fooArray.ForEach(f => Debug.Print(f.IsNumeric().ToString()));
+
+			fooArray = new []  { "1", "b", "3" };
+			fooArray.ForEach(f => Debug.Print(f.IsNumeric().ToString()));
+			Debug.Print("***********************");
+
 		}
 	}
 }

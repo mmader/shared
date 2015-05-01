@@ -8,13 +8,16 @@ namespace shared
 {
 	public static class StringExtension
 	{
-		public string Safe(this string s)
+		public static string Safe(this string s)
 		{
 			return s ?? string.Empty;
 		}
 
-		public void Foo()
+
+		public static bool IsNumeric(this string s)
 		{
+			var chars = s.ToCharArray();
+			return chars.ForEach(c => char.IsNumber(c));
 		}
 	}
 }

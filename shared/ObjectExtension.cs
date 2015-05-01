@@ -33,5 +33,20 @@ namespace shared
 					action(entry);
 			});
 		}
+
+		public static bool ForEach<T>(this IEnumerable<T> list, Func<T, bool> func)
+		{
+			if(list == null)
+				return false;
+
+			
+			bool result = true;
+			foreach(var l in list) {
+				if(func(l))
+					result = false;
+			}
+
+			return result;
+		}
     }
 }
