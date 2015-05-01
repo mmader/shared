@@ -12,5 +12,9 @@ namespace shared
 		{
 			return s ?? string.Empty;
 		}
+
+		public void Foo()
+		{
+		}
 	}
 }
