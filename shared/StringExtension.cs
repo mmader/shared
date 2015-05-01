@@ -13,11 +13,10 @@ namespace shared
 			return s ?? string.Empty;
 		}
 
-
 		public static bool IsNumeric(this string s)
 		{
-			var chars = s.ToCharArray();
-			return chars.ForEach(c => char.IsNumber(c));
+			var chars = (s != null) ? s.ToCharArray() : null;
+			return (chars != null) && chars.ForEach(c => char.IsNumber(c));
 		}
 	}
 }
