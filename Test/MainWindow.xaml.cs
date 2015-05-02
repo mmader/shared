@@ -44,8 +44,11 @@ namespace Test
 			Debug.Print("***********************");
 			fooArray.ForEach(f => Debug.Print(f.IsNumeric().ToString()));
 
-			fooArray = new []  { "1", "b", "3" };
-			fooArray.ForEach(f => Debug.Print(f.IsNumeric().ToString()));
+			fooArray = new string[]  { null, "b", "3" };
+			var ex = fooArray.TryForEach(f => new ArgumentNullException() );
+
+
+
 			Debug.Print("***********************");
 
 		}

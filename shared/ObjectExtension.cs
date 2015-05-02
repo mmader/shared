@@ -7,6 +7,17 @@ namespace shared
 {
     public static class ObjectExtension
     {
+		public static Exception Try<T>(this T o, Action<T> action)
+		{
+			try {
+				action(o);
+				return null;
+			}
+			catch(Exception ex) {
+				return ex;
+			}
+		}
+
 		public static void TryCall<T>(this T o, Action<T> action)
 		{
 			try {
@@ -15,7 +26,6 @@ namespace shared
 			catch(Exception) {
 				return;
 			}
-			
 		}
 
 		public static void SafeCall<T>(this T o, Action<T> action)
@@ -47,6 +57,16 @@ namespace shared
 			}
 
 			return result;
+		}
+
+		public static IEnumerable<Exception> TryForEach<T>(this IEnumerable<T> list, Action<T> action)
+		{
+			IEnumerable<Exception> results = null;
+			if(list == null) 
+				return null;
+			
+			results = list.Select(item => item.Try(action)).Where(ex => ex != null);
+			return results.Count() > 0 ? results : null;
 		}
     }
 }
